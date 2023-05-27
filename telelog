@@ -1,7 +1,7 @@
 #! /bin/bash
 
 
-if ! pgrep -f "telegram_worker" > /dev/null; then
+if ! pgrep -f "telelog_worker" > /dev/null; then
     core=$((`nproc` - 1))
     taskset -c $core python3 $TELELOG_DIR/telelog_worker.py &
     sleep 4
