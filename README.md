@@ -75,3 +75,5 @@ r = redis.Redis(host='localhost', port=6379, db=0)
 channel_name = os.getenv("TELEGRAM_REDIS_CHANNEL")
 r.publish(channel_name, "Hello world")
 ```
+
+<img width="218" alt="image" src="https://github.com/MohammadKhalaji/telelog/assets/38472389/c2816aa8-152d-4e9f-a4f6-a9afb846005a">
