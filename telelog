@@ -1,0 +1,11 @@
+#! /bin/bash
+
+
+if ! pgrep -f "telegram_worker" > /dev/null; then
+    core=$((`nproc` - 1))
+    taskset -c $core python3 $TELELOG_DIR/telelog_worker.py &
+    sleep 4
+fi
+
+
+redis-cli PUBLISH $TELEGRAM_REDIS_CHANNEL "$1" > /dev/null 
