@@ -4,7 +4,6 @@ from telethon import TelegramClient, events, sync
 import os 
 import subprocess
 import redis 
-from datetime import datetime
 
 hostname = subprocess.check_output("hostname").decode("utf-8").replace("\n", "")
 telelog_dir = os.getenv("TELELOG_DIR")
@@ -25,4 +24,4 @@ with TelegramClient(f'{telelog_dir}/telegram_sessions/{hostname}.session', api_i
         if message['type'] != 'message': 
             continue
         message = message['data'].decode('utf-8')
-        client.send_message(recipient, f"{hostname} - {datetime.now()}\n`{message}`")
+        client.send_message(recipient, f"{message}")

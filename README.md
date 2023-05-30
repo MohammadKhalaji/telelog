@@ -76,4 +76,17 @@ channel_name = os.getenv("TELEGRAM_REDIS_CHANNEL")
 r.publish(channel_name, "Hello world")
 ```
 
-<img width="218" alt="image" src="https://github.com/MohammadKhalaji/telelog/assets/38472389/c2816aa8-152d-4e9f-a4f6-a9afb846005a">
+From a python script with proper logging setup: 
+```python3
+from telelog_handler import TelelogHandler
+import logging 
+import os 
+
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+telelog_handler = TelelogHandler(channel=os.getenv("TELEGRAM_REDIS_CHANNEL"))
+telelog_handler.setFormatter(logging.Formatter('%(name)s - %(asctime)s - %(levelname)s\n`%(message)s`'))
+log = logging.getLogger(__name__)
+log.addHandler(telelog_handler)
+
+log.info("Hello world")
+```
